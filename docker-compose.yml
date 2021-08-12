@@ -1,0 +1,30 @@
+version: "3"
+services:
+  limesurvey:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: limesurvey:latest
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 80:80
+    depends_on:
+      - limesurvey-mariadb
+    networks:
+      - limesurvey-public
+    entrypoint: ["bash","/start.sh"]
+  limesurvey-mariadb:
+    image: mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: shencangsheng
+      MYSQL_ROOT_HOST: "%"
+    networks:
+      - limesurvey-public
+networks:
+  limesurvey-public:
