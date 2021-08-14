@@ -8,7 +8,7 @@ docker-compose up -d
 http://127.0.0.1/limesurvey
 ```
 
-Database default config
+Database default config (docker-compose.yml)
 ```
 url: limesurvey-mariadb
 port: 3306
